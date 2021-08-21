@@ -53,3 +53,18 @@ exports.updateProduct = async (req, res) => {
         res.status(201).json({ success: false, message: error });
     }
 }
+
+exports.deleteProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const product = await Product.findOne({ where: { id } });
+        if(product) {
+            product.destroy();
+            res.status(204).json({ success: true, message: product });
+        }
+        return res.status(201).json({ success: false, message: `Product with id:${id} doesn't exist` });
+    } catch (error) {
+        console.log(error);
+        res.status(201).json({ success: false, message: error });
+    }
+}
