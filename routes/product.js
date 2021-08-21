@@ -6,6 +6,7 @@ require('dotenv').config();
 
 
 router.post(`${api}/products`, productController.createProduct);
+router.get(`${api}/products`, productController.getProducts);
 
 
 module.exports = router
