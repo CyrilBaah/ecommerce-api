@@ -17,23 +17,11 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
-      brand: {
-        type: Sequelize.STRING
-      },
       price: {
-        type: Sequelize.INTEGER
-      },
-      categoryId: {
         type: Sequelize.INTEGER
       },
       productInStock: {
         type: Sequelize.INTEGER
-      },
-      rating: {
-        type: Sequelize.INTEGER
-      },
-      isFeatured: {
-        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

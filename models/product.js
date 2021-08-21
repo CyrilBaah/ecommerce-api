@@ -24,33 +24,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     image: {
       type: DataTypes.STRING,
-    },
-    brand: {
-      type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     price: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0
     },
-    categoryId: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
     productInStock: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0
     },
-    rating: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    isFeatured: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true
-    }
   }, {
     sequelize,
     modelName: 'Product',
