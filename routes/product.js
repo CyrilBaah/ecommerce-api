@@ -5,6 +5,7 @@ const api = process.env.API_URL;
 require('dotenv').config();
 
 
-router.get(`${api}/products`, productController.createProduct);
+router.post(`${api}/products`, productController.createProduct);
+
 
 module.exports = router
