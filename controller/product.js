@@ -31,3 +31,25 @@ exports.getProducts = async (req, res) => {
         res.status(201).json({ success: false, message: error });
     }
 }
+
+exports.updateProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, description, image, price, productInStock } = req.body;
+        const product = await Product.findOne({ where: { id } });
+        if(product) {
+            product.name = name;
+            product.description = description;
+            product.image = image;
+            product.price = price;
+            product.productInStock = productInStock;
+            product.save();
+
+            res.status(200).json({ success: true, message: product });
+        }
+        return res.status(201).json({ success: false, message: `Product with id:${id} doesn't exist` });
+    } catch (error) {
+        console.log(error);
+        res.status(201).json({ success: false, message: error });
+    }
+}
