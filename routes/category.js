@@ -8,6 +8,7 @@ require('dotenv').config();
 router.post(`${api}/categories`, categoryController.createCategory);
 router.get(`${api}/categories`, categoryController.getCategory);
 router.put(`${api}/categories/:id`, categoryController.updateCategory);
+router.delete(`${api}/categories/:id`, categoryController.deleteCategory);
 
 
 

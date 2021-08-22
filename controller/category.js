@@ -46,3 +46,18 @@ exports.updateCategory = async (req, res) => {
         res.status(400).json({ success: true, message: error });
     }
 }
+
+exports.deleteCategory = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const category = await Category.findOne({ where: { id } });
+        if(category) {
+            category.destroy();
+            res.status(204).json({ success: true, message: category });
+        }
+        return res.status(201).json({ success: false, message: `Category with id:${id} doesn't exist` });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: true, message: error });
+    }
+}
