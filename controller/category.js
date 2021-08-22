@@ -14,6 +14,16 @@ exports.createCategory = async (req, res) => {
         res.status(201).json({ success: true, message: category });
     } catch (error) {
         console.log(error);
-        res.status(400).json({ success: true, message: error })
+        res.status(400).json({ success: true, message: error });
     }    
+}
+
+exports.getCategory = async (req, res) => {
+    try {
+        const categories = await Category.findAll();
+        res.status(200).json({ success: true, message: categories });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: true, message: error });
+    }
 }

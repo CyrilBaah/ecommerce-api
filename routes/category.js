@@ -6,5 +6,7 @@ require('dotenv').config();
 
 
 router.post(`${api}/categories`, categoryController.createCategory);
+router.get(`${api}/categories`, categoryController.getCategory);
+
 
 module.exports = router
