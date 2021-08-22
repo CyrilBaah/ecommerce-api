@@ -27,3 +27,22 @@ exports.getCategory = async (req, res) => {
         res.status(400).json({ success: true, message: error });
     }
 }
+
+exports.updateCategory = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, color, productId } = req.body;
+        const category = await Category.findOne({ where: { id } });
+        if(category) {
+            category.name = name;
+            category.color = color;
+            category.productId = productId;
+            category.save();
+            res.status(200).json({ success: true, message: category });
+        }
+        return res.status(201).json({ success: false, message: `Category with id:${id} doesn't exist` });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: true, message: error });
+    }
+}
