@@ -11,11 +11,13 @@ app.use(cors());
 app.options('*', cors());
 
 const productsRoute = require('./routes/product');
+const categoryRoute = require('./routes/category');
 
 app.get('/', (req, res) => {
     res.status(200).json({ success: true, message: "Welcome to Ecommerce Api" })
 })
 app.use(productsRoute);
+app.use(categoryRoute);
 
 
 const PORT = process.env.PORT;
