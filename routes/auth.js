@@ -5,7 +5,8 @@ const api = process.env.API_URL;
 require('dotenv').config();
 
 
-router.post(`${api}/auth`, authController.signUp);
+router.post(`${api}/signup`, authController.signUp);
+router.post(`${api}/login`, authController.Login);
 
 
 
