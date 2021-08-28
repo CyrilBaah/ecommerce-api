@@ -43,7 +43,7 @@ exports.updateCategory = async (req, res) => {
         return res.status(201).json({ success: false, message: `Category with id:${id} doesn't exist` });
     } catch (error) {
         console.log(error);
-        res.status(400).json({ success: true, message: error });
+        res.status(400).json({ success: false, message: error });
     }
 }
 
@@ -58,6 +58,6 @@ exports.deleteCategory = async (req, res) => {
         return res.status(201).json({ success: false, message: `Category with id:${id} doesn't exist` });
     } catch (error) {
         console.log(error);
-        res.status(400).json({ success: true, message: error });
+        res.status(400).json({ success: false, message: error });
     }
 }
