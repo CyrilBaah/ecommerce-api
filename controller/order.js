@@ -20,3 +20,13 @@ exports.createOrder = async (req, res) => {
         res.status(400).json({ success: true, message: error });
     }    
 }
+
+exports.getOrder = async (req, res) => {
+    try {
+        const orders = await Order.findAll();
+        res.status(200).json({ success: true, message: orders });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: true, message: error });
+    }
+}
