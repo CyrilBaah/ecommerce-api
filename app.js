@@ -13,13 +13,15 @@ app.options('*', cors());
 const productsRoute = require('./routes/product');
 const categoryRoute = require('./routes/category');
 const authRoute = require('./routes/auth');
+const orderRoute = require('./routes/order');
 
 app.get('/', (req, res) => {
     res.status(200).json({ success: true, message: "Welcome to Ecommerce Api" })
 })
 app.use(productsRoute);
 app.use(categoryRoute);
-app.use(authRoute)
+app.use(authRoute);
+app.use(orderRoute);
 
 
 const PORT = process.env.PORT;
