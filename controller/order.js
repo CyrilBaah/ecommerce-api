@@ -32,6 +32,23 @@ exports.getOrder = async (req, res) => {
     }
 }
 
+exports.updateOrder = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+        const order = await Order.findOne({ where: { id } });
+        if (order) {
+            order.status = status;
+            order.save();
+            res.status(200).json({ success: true, message: order });
+        }
+        return res.status(201).json({ success: false, message: `Order with id:${id} doesn't exist` });
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: true, message: error });
+    }
+}
+
 exports.deleteOrder = async (req, res) => {
     try {
         const { id } = req.params;
