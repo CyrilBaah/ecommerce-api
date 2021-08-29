@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(morgan('tiny'));
 app.use(cors());
 app.options('*', cors());
-const fileStorage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/uploads')
     },
@@ -18,8 +18,16 @@ const fileStorage = multer.diskStorage({
         const fileName = file.originalname.replace(' ','-');
         cb(null, Date.now() + '-' + fileName);
     }
-})
-app.use(multer({ storage: fileStorage }).single('image'));
+});
+
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+}
+app.use(multer({ storage , fileFilter }).single('image'));
 
 const productsRoute = require('./routes/product');
 const categoryRoute = require('./routes/category');
