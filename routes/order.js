@@ -7,6 +7,8 @@ require('dotenv').config();
 
 router.post(`${api}/orders`, orderController.createOrder);
 router.get(`${api}/orders`, orderController.getOrder);
+router.delete(`${api}/orders/:id`, orderController.deleteOrder);
+
 
 
 module.exports = router
