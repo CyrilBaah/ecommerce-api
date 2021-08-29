@@ -8,14 +8,19 @@ exports.createProduct = async (req, res) => {
     try {
         const { name, description, price, productInStock } = req.body;
         const image = req.file;
-        const product = await Product.create({
-            name,
-            description,
-            image: image.path,
-            price,
-            productInStock
-        });
-        res.status(201).json({ success: true, message: product });
+        if (!(name && description && price && productInStock && image)) {
+            res.status(201).json({ success: false, message: 'All fields required' });
+        } else {
+            const product = await Product.create({
+                name,
+                description,
+                image: image.path,
+                price,
+                productInStock
+            });
+            res.status(200).json({ success: true, message: product });
+        }
+        res.status(201).json({ success: false, message: product });
     } catch (error) {
         console.log(error);
         res.status(201).json({ success: false, message: error });
