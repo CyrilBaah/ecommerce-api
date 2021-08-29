@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
+const multer = require('multer');
 require('dotenv').config();
 const { sequelize } = require('./models');
 
@@ -9,6 +10,16 @@ app.use(express.json());
 app.use(morgan('tiny'));
 app.use(cors());
 app.options('*', cors());
+const fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/uploads')
+    },
+    filename: (req, file, cb) => {
+        const fileName = file.originalname.replace(' ','-');
+        cb(null, Date.now() + '-' + fileName);
+    }
+})
+app.use(multer({ storage: fileStorage }).single('image'));
 
 const productsRoute = require('./routes/product');
 const categoryRoute = require('./routes/category');

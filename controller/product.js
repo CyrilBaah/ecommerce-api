@@ -6,14 +6,16 @@ app.use(express.json());
 
 exports.createProduct = async (req, res) => {
     try {
-        const { name, description, image, price, productInStock } = req.body;
-        const product = await Product.create({
-            name,
-            description,
-            image,
-            price,
-            productInStock
-        });
+        const { name, description, price, productInStock } = req.body;
+        const image = req.file;
+        console.log(image);
+        // const product = await Product.create({
+        //     name,
+        //     description,
+        //     image,
+        //     price,
+        //     productInStock
+        // });
         res.status(201).json({ success: true, message: product });
 
     } catch (error) {
